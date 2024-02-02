@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: center;
+    min-height: 84px;
+    border-bottom: rgb(88, 88, 88) solid 1px;
+}
+
+.header {
+    display: flex;
+    align-content: center;
+    width: 1400px;
+    max-height: fit-content;
+}
+
+.img {
+    margin: 10px 20px;
+}
+
+

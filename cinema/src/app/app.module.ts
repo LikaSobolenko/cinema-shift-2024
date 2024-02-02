@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AfficheComponent } from './affiche/affiche.component';
 import { MovieComponent } from './movie/movie.component'
+import { HeaderComponent } from './header/header.component'
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     AfficheComponent, 
-    MovieComponent
+    MovieComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
