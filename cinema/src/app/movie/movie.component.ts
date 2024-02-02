@@ -15,7 +15,13 @@ export class MovieComponent {
   public schedule: Schedules[] = [];
   public stars = [false, false, false, false, false]
   public isLoaded = false;
-  selectedDate: string | null = null;
+  public seances: any = [];
+  public hallTime: any = [];
+  public selectedDate: any = [];
+  public places: any = [];
+  public screenLenght: number = 0;
+  selectedHall: string | null = null;
+  public halls = ['Red', 'Green', 'Blue']
 
   constructor(
     private dataService: DataService,
@@ -42,16 +48,38 @@ export class MovieComponent {
         schedules.subscribe(
           (result: any) => {
             if(result) this.schedule = result.schedules
-            console.log(this.schedule)
           }
         );
       }      
     });
   }
 
-  onSelectionChange(selectedDate: string): void {
-    this.selectedDate = selectedDate;
-    console.log('Selected Date:', this.selectedDate);
+  onSelectionDate(selectedDate: string): void {
+    this.selectedHall = '';
+    this.hallTime = [];
+    this.places = [];
+    this.screenLenght = 0;
+    this.selectedDate = this.schedule.find(obj => obj.date === selectedDate);
+  }
+
+  onSelectionTime(selectedHall: string): void {
+    this.selectedHall = selectedHall;
+    this.seances = this.selectedDate.seances;
+    this.hallTime = [];
+    this.places = [];
+    this.screenLenght = 0;
+    this.seances.forEach((el: any)  => {
+      if(el.hall.name === this.selectedHall) {
+        this.hallTime.push(el.time)
+      }
+    })
+  }
+  onSelectionChairs(selectedTime: string): void {
+    this.places = [];
+    const seance = this.seances.find((obj: any) => obj.time === selectedTime && obj.hall.name === this.selectedHall);
+    this.places = seance.hall.places;
+    this.screenLenght = this.places[0].length
+
   }
 
   toAffichePage() {    

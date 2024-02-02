@@ -55,7 +55,7 @@ a:hover{
 .h1 {
   margin: 40px;
   font-weight: 700;
-  font-size: 44px;
+  font-size: 60px;
 }
 
 .nav  {
@@ -80,6 +80,40 @@ a:hover{
   margin-top: 10px;
 }
 
+.test {
+  margin: 5px;
+}
+
+.schedule-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 3fr;
+  grid-template-rows: 1fr;
+  align-items: start;
+}
+
+.screen {
+  border-bottom: rgba(0, 0, 0, 0.519) solid 3px;
+}
+
+
+.row-container {
+  display: flex;
+}
+
+.place {
+  max-height: 30px;
+  margin: 5px;
+}
+
+.invisible-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  opacity: 0.5;
+}
+
 .mat-mdc-card {
   border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.44);
@@ -96,6 +130,27 @@ a:hover{
 
 .mat-mdc-unelevated-button {
   width: 100%;
+}
+
+.mat-mdc-chip-set[_ngcontent-ng-c1229338089] {
+  max-width: 100%;
+}
+
+.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) {
+  width: 105px;
+}
+
+@media screen and (max-width: 1150px) {
+  .schedule-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: start;
+  }
+
+  .schedule-container-item{
+    grid-area: 2/1/3/4;
+  }
 }
 
 @media screen and (max-width: 700px) {

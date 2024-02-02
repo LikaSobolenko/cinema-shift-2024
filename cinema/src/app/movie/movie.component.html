@@ -47,22 +47,55 @@
           </div>
         </mat-card-subtitle>
       </mat-card-title-group>
-
     </mat-card-header>
     <mat-card-content>
-
     </mat-card-content>
   </mat-card>
 
-  <div>Расписание</div>
+  <h2>Расписание</h2>
 
-  <div>
-    <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="Color selection">
-      <mat-chip-option *ngFor="let item of schedule" color="warn" [value]="item.date"
-        (click)="onSelectionChange(item.date)">
-        {{ item.date }}
-      </mat-chip-option>
-    </mat-chip-listbox>
+  <div class="schedule-container">
+    <div class="chips-container">
+      <h2>Дата</h2>
+      <mat-chip-listbox aria-label="Fish selection" class="chips-container">
+        <mat-chip-option *ngFor="let item of schedule" color="warn" [value]="item.date"
+          (click)="onSelectionDate(item.date)" class="test">
+          {{ item.date }}
+        </mat-chip-option>
+      </mat-chip-listbox>
+    </div>
+
+    <div>
+      <h2>Зал</h2>
+      <mat-chip-listbox aria-label="Fish selection" class="chips-container">
+        <mat-chip-option *ngFor="let item of halls" color="warn" [value]="item" (click)="onSelectionTime(item)"
+          class="test">
+          {{ item }}
+        </mat-chip-option>
+      </mat-chip-listbox>
+    </div>
+
+    <div>
+      <h2>Время</h2>
+      <mat-chip-listbox aria-label="Fish selection" class="chips-container">
+        <mat-chip-option *ngFor="let item of hallTime" color="warn" [value]="item" class="test"
+          (click)="onSelectionChairs(item)">
+          {{ item }}
+        </mat-chip-option>
+      </mat-chip-listbox>
+    </div>
+
+    <div class="schedule-container-item">
+      <h2>Выберите место</h2>
+      <div class="screen" [style.width]="screenLenght * 40 + 'px'">Экран</div>
+      <div *ngFor="let item of places" class="row-container">
+        <div *ngFor="let place of item">
+          <button class="invisible-button">
+            <img src="../../assets/place-free.png" alt="{{ place.type }}" class="place" />
+          </button>
+        </div>
+      </div>
+    </div>
 
   </div>
 
