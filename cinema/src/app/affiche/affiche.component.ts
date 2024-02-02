@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AfficheComponent implements OnInit { // добавлен интерфейс OnInit
   public data: Movie[] = [];
+  public isLoaded = false;
 
   constructor(
     private dataService: DataService,
@@ -24,9 +25,8 @@ export class AfficheComponent implements OnInit { // добавлен интер
         this.data.forEach((el)=>{
           const newReleaseDate = el.releaseDate.split(" ");
           if(newReleaseDate)el.releaseDate = newReleaseDate[2];
-          else el.releaseDate = '';
-          console.log(el.genres[0])
-        })
+        })        
+        this.isLoaded = true;
       }
     );
   }

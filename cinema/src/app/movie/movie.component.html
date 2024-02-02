@@ -1,26 +1,53 @@
 <section>
-  <button mat-icon-button aria-label="back" class="arrow-back">
-    <mat-icon>arrow_back</mat-icon>
-  </button>
-  <mat-card class="example-card">
-    <mat-card-header>
+  <div class="nav">
+    <button mat-icon-button aria-label="back" class="arrow-back" (click)="toAffichePage()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1 class="head"><a href="/afisha">Назад к афише</a></h1>
+  </div>
+  <mat-card class="example-card" *ngIf="isLoaded">
+    <mat-card-header class="card-container">
       <img class="img" [src]="'https://shift-backend.onrender.com' + data.img">
       <mat-card-title-group class="card">
-        <mat-card-title>{{data.name}}</mat-card-title>
+        <mat-card-title>
+          <h1>{{data.name}} ({{data.ageRating}})</h1>
+        </mat-card-title>
         <mat-card-subtitle>
           <div>
-            <p>Дата выхода: {{data.releaseDate}}</p>
+            <p><span class="fat">Страна: </span>{{data.country.name}}</p>
+            <p><span class="fat">Дата выхода: </span>{{data.releaseDate}}</p>
+            <div>
+              <p>
+                <span *ngFor="let star of stars">
+                  <img [src]="star ? '../../assets/star-full.png' : '../../assets/star-empty.png'" alt="star"
+                    class="star">
+                </span>
+              </p>
+              <span class="rating"><span class="fat">Кинопоиcк:</span> {{data.userRatings.kinopoisk}}</span>
+              <span><span class="fat">IMDB:</span> {{data.userRatings.imdb}}</span>
+            </div>
             <p>
-              <span class="rating">Кинопоика: {{data.userRatings.kinopoisk}}</span>
-              <span>IMDB: {{data.userRatings.imdb}}</span>
+              <span class="fat">Жанр: </span>
+              <span *ngFor="let genre of data.genres; let last = last">{{ genre }}{{ !last ? ', ' : '' }}</span>
             </p>
-            <p>Жанр: <span *ngFor="let genre of data.genres; let last = last">{{ genre }}{{ !last ? ', ' : '' }}</span>
+            <p>
+              <span class="fat">В главных ролях: </span>
+              <span
+                *ngFor="let actor of data.actors; let last = last">{{ actor.fullName }}{{ !last ? ', ' : '' }}</span>
             </p>
+            <p>
+              <span class="fat">Режисёр: </span>
+              <span
+                *ngFor="let director of data.directors; let last = last">{{ director.fullName }}{{ !last ? ', ' : '' }}</span>
+            </p>
+            <p><span class="fat">Время просмотра: </span>{{data.runtime}} мин.</p>
 
-            {{data.description}}
+
+            <p class="description">{{data.description}}</p>
           </div>
         </mat-card-subtitle>
       </mat-card-title-group>
+
     </mat-card-header>
     <mat-card-content>
 
