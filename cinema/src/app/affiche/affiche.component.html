@@ -1,28 +1,30 @@
-<section>
-  <h1>Афиша</h1>
+<section class="section">
+  <h1 class="h1">Афиша</h1>
   <div class="container">
     <div *ngFor="let item of data" class="item">
       <mat-card class="example-card">
         <img class="img" [src]="'https://shift-backend.onrender.com' + item.img">
+        <div class="country-text">
+          <div class="small-text">
+            {{ item.country.name }}, {{ item.releaseDate }}
+            <div>{{ item.genres[0] }}</div>
+          </div>
+        </div>
         <mat-card-content>
           <mat-card-subtitle>
             <mat-card-title>
-              <p>{{item.name}}</p>
+              <p class="fat">{{item.name}}</p>
             </mat-card-title>
             <div>
-              <p>Дата выхода: {{item.releaseDate}}</p>
               <p>
-                <span class="rating">Кинопоика: {{item.userRatings.kinopoisk}}</span>
-                <span>IMDB: {{item.userRatings.imdb}}</span>
+                <span class="rating"><span class="fat">Кинопоика:</span> {{item.userRatings.kinopoisk}}</span>
+                <span><span class="fat">IMDB:</span> {{item.userRatings.imdb}}</span>
               </p>
-              <p>Жанр: <span
-                  *ngFor="let genre of item.genres; let last = last">{{ genre }}{{ !last ? ', ' : '' }}</span></p>
             </div>
           </mat-card-subtitle>
-          <button mat-flat-button color="primary" (click)="navigateToMovie(item.id)">Подробнее</button>
+          <button class="button" mat-flat-button color="primary" (click)="navigateToMovie(item.id)">Подробнее</button>
         </mat-card-content>
       </mat-card>
     </div>
   </div>
-
 </section>

@@ -19,7 +19,15 @@ export class AfficheComponent implements OnInit { // добавлен интер
   ngOnInit() {
     const response = this.dataService.getMoviesList();
     response.subscribe(
-      (result: any) => {this.data = result.films}
+      (result: any) => {
+        this.data = result.films
+        this.data.forEach((el)=>{
+          const newReleaseDate = el.releaseDate.split(" ");
+          if(newReleaseDate)el.releaseDate = newReleaseDate[2];
+          else el.releaseDate = '';
+          console.log(el.genres[0])
+        })
+      }
     );
   }
 
