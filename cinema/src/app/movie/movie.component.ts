@@ -1,8 +1,7 @@
-import { Component, OnInit  } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
+import { ActivatedRoute,  Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { Movie, Schedules } from '../interfaces.models';
-import { getLocaleExtraDayPeriodRules } from '@angular/common';
 
 @Component({
   selector: 'app-movie',
@@ -14,11 +13,20 @@ export class MovieComponent {
   public movieId: string | null = null;
   public data: Movie = {} as Movie;
   public schedule: Schedules[] = [];
-  selectedDate: string | null = null;
+  public stars = [false, false, false, false, false]
+  public isLoaded = false;
+  public seances: any = [];
+  public hallTime: any = [];
+  public selectedDate: any = [];
+  public places: any = [];
+  public screenLenght: number = 0;
+  selectedHall: string | null = null;
+  public halls = ['Red', 'Green', 'Blue']
 
   constructor(
     private dataService: DataService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
     ) { }
 
   ngOnInit() {
@@ -29,22 +37,53 @@ export class MovieComponent {
         response.subscribe(
           (result: any) => {
             if(result) this.data = result.film
-            console.log(this.data)
+            if(this.data.ageRating === 'R') this.data.ageRating = '16+'
+            else this.data.ageRating = '18+';
+            let rating = Math.round(+(this.data.userRatings.kinopoisk) / 2)
+            for (let i = 0; i < rating; i++) {this.stars[i]=true}
+            this.isLoaded = true;
           }
         );
         const schedules = this.dataService.getMovieSchedules(this.movieId);
         schedules.subscribe(
           (result: any) => {
             if(result) this.schedule = result.schedules
-            console.log(this.schedule)
           }
         );
       }      
     });
   }
 
-  onSelectionChange(selectedDate: string): void {
-    this.selectedDate = selectedDate;
-    console.log('Selected Date:', this.selectedDate);
+  onSelectionDate(selectedDate: string): void {
+    this.selectedHall = '';
+    this.hallTime = [];
+    this.places = [];
+    this.screenLenght = 0;
+    this.selectedDate = this.schedule.find(obj => obj.date === selectedDate);
   }
+
+  onSelectionTime(selectedHall: string): void {
+    this.selectedHall = selectedHall;
+    this.seances = this.selectedDate.seances;
+    this.hallTime = [];
+    this.places = [];
+    this.screenLenght = 0;
+    this.seances.forEach((el: any)  => {
+      if(el.hall.name === this.selectedHall) {
+        this.hallTime.push(el.time)
+      }
+    })
+  }
+  onSelectionChairs(selectedTime: string): void {
+    this.places = [];
+    const seance = this.seances.find((obj: any) => obj.time === selectedTime && obj.hall.name === this.selectedHall);
+    this.places = seance.hall.places;
+    this.screenLenght = this.places[0].length
+
+  }
+
+  toAffichePage() {    
+    this.router.navigate(['/afisha']);
+  }
+
 }

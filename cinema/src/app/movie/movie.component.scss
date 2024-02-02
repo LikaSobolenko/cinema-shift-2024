@@ -1,16 +1,34 @@
 section {
-  max-width: 1000px;
-  padding: 20px;
+  padding: 0 20px 50px 20px;
   text-align: start;
 }
 
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  margin-left: 5px;
+}
+
+a:hover{  
+  text-decoration: none;
+  color: black;
+}
+
 .example-card {
-    max-width: 1000px;
+    width: 100%;
     margin-bottom: 8px;
   }
 
 .img {
-  max-height: 300px;
+  height: 100%; 
+  object-fit: contain;
+  max-width: 50%;
+  max-height: 500px;
+  border-radius: 15px;
 }
 
 .mat-mdc-chip-set {
@@ -18,9 +36,136 @@ section {
 }
 
 .card {
-  padding: 0 20px;
+  padding: 0 40px;
 }
 
 .arrow-back {
   margin: 20px 0px;
 }
+
+.star {
+  max-height: 30px;
+  margin: 10px 5px 0 0;
+}
+
+.rating {
+  margin-right: 10px;
+}
+
+.h1 {
+  margin: 40px;
+  font-weight: 700;
+  font-size: 60px;
+}
+
+.nav  {
+  display: flex;
+  align-content: center;
+}
+
+.head {
+  display: inline;
+  padding-top: 14px;
+}
+
+.button {
+  margin-top: 10px;
+}
+
+.fat {
+  font-weight: 600;
+}
+
+.description {
+  margin-top: 10px;
+}
+
+.test {
+  margin: 5px;
+}
+
+.schedule-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 3fr;
+  grid-template-rows: 1fr;
+  align-items: start;
+}
+
+.screen {
+  border-bottom: rgba(0, 0, 0, 0.519) solid 3px;
+}
+
+
+.row-container {
+  display: flex;
+}
+
+.place {
+  max-height: 30px;
+  margin: 5px;
+}
+
+.invisible-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  opacity: 0.5;
+}
+
+.mat-mdc-card {
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.44);
+  border-width: 0;
+  border-style: solid;
+  box-shadow: 8px 4px 9px rgba(34, 60, 80, 0.2);
+}
+
+.mat-mdc-card-subtitle, .mat-mdc-card-title {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: large;
+  color: #880E4F;
+}
+
+.mat-mdc-unelevated-button {
+  width: 100%;
+}
+
+.mat-mdc-chip-set[_ngcontent-ng-c1229338089] {
+  max-width: 100%;
+}
+
+.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) {
+  width: 105px;
+}
+
+@media screen and (max-width: 1150px) {
+  .schedule-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: start;
+  }
+
+  .schedule-container-item{
+    grid-area: 2/1/3/4;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card {
+    padding: 0;
+  }
+
+  .img {
+    max-width: 100%;
+  }
+}
+  

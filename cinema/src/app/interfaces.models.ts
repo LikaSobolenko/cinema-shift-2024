@@ -20,12 +20,18 @@ export interface Movie {
     ];
     runtime: number;
     ageRating: string;
-    genres: [],
+    genres: [''],
     userRatings: {
         kinopoisk: string,
         imdb: string
     };
     img: string;
+    country: {
+        id: number,
+        code: string,
+        code2: string,
+        name: string
+    }
 }
 
 export interface Schedules {
