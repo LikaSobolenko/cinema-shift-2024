@@ -1,0 +1,22 @@
+.example-card {
+    width: 300px;
+    margin-bottom: 8px;
+  }
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.item {
+  margin: 5px;
+}
+
+.img{
+  max-width: 350px;
+}
+
+.rating {
+  margin: 0 10px;
+}

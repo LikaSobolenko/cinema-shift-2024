@@ -1,0 +1,42 @@
+<section>
+  <button mat-icon-button aria-label="back" class="arrow-back">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <img class="img" [src]="'https://shift-backend.onrender.com' + data.img">
+      <mat-card-title-group class="card">
+        <mat-card-title>{{data.name}}</mat-card-title>
+        <mat-card-subtitle>
+          <div>
+            <p>Дата выхода: {{data.releaseDate}}</p>
+            <p>
+              <span class="rating">Кинопоика: {{data.userRatings.kinopoisk}}</span>
+              <span>IMDB: {{data.userRatings.imdb}}</span>
+            </p>
+            <p>Жанр: <span *ngFor="let genre of data.genres; let last = last">{{ genre }}{{ !last ? ', ' : '' }}</span>
+            </p>
+
+            {{data.description}}
+          </div>
+        </mat-card-subtitle>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+
+    </mat-card-content>
+  </mat-card>
+
+  <div>Расписание</div>
+
+  <div>
+    <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="Color selection">
+      <mat-chip-option *ngFor="let item of schedule" color="warn" [value]="item.date"
+        (click)="onSelectionChange(item.date)">
+        {{ item.date }}
+      </mat-chip-option>
+    </mat-chip-listbox>
+
+  </div>
+
+</section>
